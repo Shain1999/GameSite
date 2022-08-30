@@ -14,6 +14,19 @@ router.get("/", async (request, response, next) => {
         return next(e)
     }
 });
+
+router.get("/api", async (request, response, next) => {
+    let query = request.url.split('?');
+
+    let categoriesObj = querystring.parse(query[1]);
+    try {
+        let games = await gamesLogic.apiDiscoverByCategories(categoriesObj);
+        response.json(games);
+    }
+    catch (e) {
+        return next(e)
+    }
+});
 router.get("/top5", async (request, response, next) => {
     try {
         let games = await gamesLogic.getTop5LikedGames();

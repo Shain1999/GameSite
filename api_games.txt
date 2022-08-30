@@ -1,0 +1,1 @@
+https://apidocs.gameanalytics.com/metrics#:~:text=The%20Metrics%20API%20enables%20you%20to%20programmatically%20query,compare%20performance%20across%20games%20or%20specific%20user%20groups

@@ -91,4 +91,16 @@ async function getGamesAppearanceByCategory(categoriesObj) {
     }
 
 }
-module.exports = { getGames, getGamesAppearanceByCategory, getMultipleGamesDataByIds, getCategoryIDAppearanceByGames,getTop5LikedGamesID }
+async function getApiCategoriesIdByCategoryId(categoriesObj) {
+    let sql = `SELECT DISTINCT api_id FROM gamesite.genres_api where category_id=?  or category_id=? or category_id=? or category_id=? or category_id=?`
+    let parameters = [categoriesObj.catId1, categoriesObj.catId2, categoriesObj.catId3, categoriesObj.catId4, categoriesObj.catId5]
+    try {
+        let apiCategoriesArray=await connection.executeWithParameters(sql,parameters);
+        return apiCategoriesArray
+    } catch (error) {
+        throw new Error(error);
+
+    }
+
+}
+module.exports = { getGames, getGamesAppearanceByCategory, getMultipleGamesDataByIds, getCategoryIDAppearanceByGames, getTop5LikedGamesID,getApiCategoriesIdByCategoryId }
